@@ -2,7 +2,7 @@
 
 echo "Building Docker image..."
 docker build -t inigomontoya722/custom-app .
-docker push inigomontoya722/custom-app
+# docker push inigomontoya722/custom-app
 
 echo "Deploying to Kubernetes..."
 kubectl apply -f configmap.yaml
