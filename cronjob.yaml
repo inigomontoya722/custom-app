@@ -16,7 +16,7 @@ spec:
             - -c
             - |
               timestamp=$(date +%Y%m%d%H%M%S)
-              curl -s http://app-service/logs > /tmp/app.log
+              curl -s http://custom-app-service/logs > /tmp/app.log
               tar -czf /tmp/app-logs-${timestamp}.tar.gz /tmp/app.log
               echo "Logs archived at /tmp/app-logs-${timestamp}.tar.gz"
           restartPolicy: OnFailure
