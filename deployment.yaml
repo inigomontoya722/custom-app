@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: custom-app-deployment
+  labels:
+    app: custom-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: custom-app
+  template:
+    metadata:
+      labels:
+        app: custom-app
+    spec:
+      containers:
+      - name: custom-app-container
+        image: inigomontoya722/custom-app
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 3000
+        envFrom:
+        - configMapRef:
+            name: custom-app-config
+        volumeMounts:
+        - mountPath: /app/logs
+          name: logs-volume
+        imagePullPolicy: IfNotPresent
+      volumes:
+      - name: logs-volume
+        emptyDir:
+          sizeLimit: 500Mi
+          medium: Memory
+          
