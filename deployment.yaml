@@ -32,7 +32,7 @@ spec:
         imagePullPolicy: IfNotPresent
       volumes:
       - name: logs-volume
-        emptyDir:
-          sizeLimit: 500Mi
-          medium: Memory
+        hostPath:
+          path: /app/logs
+          type: DirectoryOrCreate
           
